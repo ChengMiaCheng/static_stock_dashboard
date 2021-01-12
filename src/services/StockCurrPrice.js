@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { iex } from "../config/iex.js";
+import { iex } from "../config/config";
 import axios from "axios";
 
 const StockCurrPrice = (props) => {

@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { iex } from "../config/iex.js";
+import { iex, stockHistoricalChart_rangeOptions } from "../config/config.js";
 import { Line } from "react-chartjs-2";
 
-const ranges = ["7d", "1m", "ytd"];
 export class StockPerformance extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loadingChartData: true,
       chartData: null,
-      range: "7d",
+      range: stockHistoricalChart_rangeOptions[0].dataField,
     };
   }
 
@@ -32,8 +31,20 @@ export class StockPerformance extends Component {
     }
   }
 
+  getRangeDataField = (props) => {
+    var ret = null;
+
+    stockHistoricalChart_rangeOptions.map((rangeOpt) => {
+      if (rangeOpt.text === props) {
+        ret = rangeOpt.dataField;
+      }
+      return ret;
+    });
+    return ret;
+  };
+
   async updateChart(props) {
-    const { selectedRange } = props;
+    const selectedRange = this.getRangeDataField(props.selectedRange);
 
     if (selectedRange === this.state.range) {
       console.log(
@@ -58,15 +69,16 @@ export class StockPerformance extends Component {
     return (
       <div>
         <div className="grid-container">
-          {ranges.map((range) => {
+          {stockHistoricalChart_rangeOptions.map((range, index) => {
             return (
               <div
+                key={index}
                 className="button"
                 onClick={(e) => {
                   this.updateChart({ selectedRange: e.target.innerText });
                 }}
               >
-                {range}
+                {range.text}
               </div>
             );
           })}

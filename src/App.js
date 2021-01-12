@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import StockCurrentPrice from "./services/StockCurrPrice";
 import StockPerformance from "./services/StockPerformance";
 import StockPositions from "./services/StockPositions";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   render() {

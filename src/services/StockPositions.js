@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { iex } from "../config/iex.js";
-import Table from "../components/Table";
-import { num_rows, col_names } from "../config/table";
+import {
+  iex,
+  stockPositionTable_numRows,
+  stockPositionTable_columns,
+} from "../config/config.js";
+
 import "../styles/style.css";
+
+import BootstrapTable from "react-bootstrap-table-next";
 
 export class StockPositions extends Component {
   constructor(props) {
@@ -42,14 +47,23 @@ export class StockPositions extends Component {
 const StockTable = (props) => {
   const numFetchedStocks = props.stocks.length;
   const name = props.name;
+  const key = stockPositionTable_columns[0].dataField;
 
   if (numFetchedStocks > 0) {
-    if (numFetchedStocks > num_rows) {
-      const stocks = props.stocks.slice(0, num_rows);
-      return <Table name={name} headers={col_names} rows={stocks} />;
-    } else {
-      return <Table name={name} headers={col_names} rows={props.stocks} />;
-    }
+    const stocks =
+      numFetchedStocks > stockPositionTable_numRows
+        ? props.stocks.slice(0, stockPositionTable_numRows)
+        : props.stocks;
+    return (
+      <div>
+        <p>{name}</p>
+        <BootstrapTable
+          keyField={key}
+          data={stocks}
+          columns={stockPositionTable_columns}
+        />
+      </div>
+    );
   } else {
     return (
       <div>
