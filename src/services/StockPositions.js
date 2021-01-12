@@ -4,7 +4,7 @@ import Table from "../components/Table";
 import { num_rows, col_names } from "../config/table";
 import "../styles/style.css";
 
-export class StockPositions2 extends Component {
+export class StockPositions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ export class StockPositions2 extends Component {
   async componentDidMount() {
     const url = `https://api.allorigins.win/raw?url=${iex.base_url}/stock/market/list/${this.props.list_type}?token=${iex.api_token}`;
 
-    let response = await fetch(url);
+    const response = await fetch(url);
     if (response.status === 200) {
       const data = await response.json();
       this.setState({
@@ -24,14 +24,6 @@ export class StockPositions2 extends Component {
         loading: false,
       });
     }
-
-    // this.fetchData();
-    // this.timer = setInterval(() => this.fetchData(), 5000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-    this.timer = null;
   }
 
   render() {
@@ -68,4 +60,4 @@ const StockTable = (props) => {
   }
 };
 
-export default StockPositions2;
+export default StockPositions;

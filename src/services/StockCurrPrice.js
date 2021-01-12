@@ -4,19 +4,18 @@ import axios from "axios";
 
 const StockCurrPrice = (props) => {
   const { symbol } = props;
+  const url_price = `${iex.base_url}/stock/${symbol}/quote/latestPrice?token=${iex.api_token}`;
   const [currPrice, setCurrPrice] = useState(0);
-  let prevPrice = currPrice;
+  let prevPrice = null;
   useEffect(() => {
     const fetchData = async () => {
-      const url_price = `https://api.allorigins.win/raw?url=${iex.base_url}/stock/${symbol}/quote/latestPrice?token=${iex.api_token}`;
-      console.log(url_price);
       const result = await axios(url_price);
-      console.log(symbol, result.data);
+
       setCurrPrice(result.data);
     };
 
     fetchData();
-  }, [currPrice]);
+  }, [url_price]);
 
   return (
     <CurrentPrice symbol={symbol} prePrice={prevPrice} currPrice={currPrice} />
@@ -25,7 +24,7 @@ const StockCurrPrice = (props) => {
 
 const CurrentPrice = (props) => {
   const { symbol, isIncreased, currPrice } = props;
-  console.log(symbol, currPrice);
+
   if (isIncreased) {
     <div className="grid-container">
       <div>{symbol}</div>
