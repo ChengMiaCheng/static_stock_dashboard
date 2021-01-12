@@ -1,0 +1,91 @@
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.App-header {
+  background-color: #203c74;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  font-size: 40px;
+}
+
+.App-footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: left;
+  background: #203c74;
+  margin-top: 20px;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.App-footer-link {
+  color: #61dafb;
+}
+
+/*layout*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.grid-container-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.grid-container-2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.grid-container > div {
+  text-align: left;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid green;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #f00;
+}
+
+.button {
+  display: outline-button;
+  cursor: pointer;
+  color: black;
+  font-family: Arial;
+  font-size: 10px;
+  padding: 2px 2px;
+}
+.button:hover {
+  color: red;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
